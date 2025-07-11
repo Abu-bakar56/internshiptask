@@ -22,13 +22,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Sync with Hugging Face Space
+      - name: Sync and Push to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git config --global user.email "abubakarshahzad730@gmail.com"
           git config --global user.name "Abu-bakar56"
           git remote remove space || true
-          git remote add space https://huggingface.co/spaces/Abubakar567/internshiptask
+          git remote add space https://Abubakar567:${HF_TOKEN}@huggingface.co/spaces/Abubakar567/internshiptask
           git fetch space
           git rebase space/main || git rebase --skip
+          git push space HEAD:main
