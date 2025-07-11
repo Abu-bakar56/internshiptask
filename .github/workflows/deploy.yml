@@ -35,4 +35,4 @@ jobs:
           git remote -v
 
           # Force push after full checkout to avoid shallow push error
-          git push --force space https://Abubakar567:${HF_TOKEN}@huggingface.co/spaces/Abubakar567/internshiptask  main
+          git push --force space main
