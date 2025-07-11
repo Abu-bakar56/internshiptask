@@ -65,7 +65,7 @@ jobs:
         git remote remove space || true
         git remote add space https://huggingface.co/spaces/Abubakar567/internshiptask
         git fetch space
-        git rebase space/main
+        git rebase space/main || git rebase --skip
 
     - name: Push to Hugging Face Space
       env:
