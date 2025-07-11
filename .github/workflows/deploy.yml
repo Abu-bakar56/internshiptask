@@ -1,0 +1,33 @@
+name: Deploy RAG App to Hugging Face
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Push to Hugging Face Space
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        git config --global user.email "abubakarshahzad730@gmail.com"
+        git config --global user.name "Abu-bakar56"
+        git remote remove space || true
+        git remote add space https://huggingface.co/spaces/Abubakar567/internshiptask
+        git push https://Abubakar567:$HF_TOKEN@huggingface.co/spaces/Abubakar567/internshiptask main
