@@ -28,6 +28,12 @@ jobs:
         run: |
           git config --global user.email "abubakarshahzad730@gmail.com"
           git config --global user.name "Abu-bakar56"
-          git remote remove space || true
-          git remote add space https://Abubakar567:${HF_TOKEN}@huggingface.co/spaces/Abubakar567/internshiptask
+          
+          # Add Hugging Face as a remote
+          git remote add space https://Abubakar567:${HF_TOKEN}@huggingface.co/spaces/Abubakar567/internshiptask || true
+          
+          # Print current remotes to confirm
+          git remote -v
+          
+          # Push to Hugging Face Space (force to avoid conflict)
           git push --force space main
